@@ -1,0 +1,12 @@
+menu "hal_nordic (C:\Users\one\Documents\Zephyr\modules\hal\nordic)"
+osource "$(ZEPHYR_HAL_NORDIC_KCONFIG)"
+config ZEPHYR_HAL_NORDIC_MODULE
+	bool
+	default y
+endmenu
+menu "sof (C:\Users\one\Documents\Zephyr\modules\audio\sof)"
+osource "C:/Users/one/Documents/Zephyr/modules/audio/sof/zephyr/Kconfig"
+config ZEPHYR_SOF_MODULE
+	bool
+	default y
+endmenu

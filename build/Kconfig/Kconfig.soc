@@ -1,0 +1,1 @@
+osource "C:/Users/one/Documents/Zephyr/zephyr/soc/$(ARCH)/*/Kconfig.soc"
