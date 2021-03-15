@@ -112,7 +112,7 @@ u16_t max30208_read_fifo(int *data)
     //rslt |= max30208_i2c_write(MAX30208_FIFO_CONFIG_2, 0x1A, 1);
     *data = (temp_dat[0] << 8) + temp_dat[1];
     if (rslt != MAX_OK)
-        printk("READING FROM MAX30208 FIFO : FAILED\n");
+        // printk("READING FROM MAX30208 FIFO : FAILED\n");
     return rslt;
 }
 

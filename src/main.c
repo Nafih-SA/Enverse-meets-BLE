@@ -32,6 +32,10 @@
 #include <bluetooth/gatt.h>
 #include <bluetooth/services/hrs.h>
 
+// #define LOG_LEVEL CONFIG_BT_CSTM_LOG_LEVEL
+// #include <logging/log.h>
+// LOG_MODULE_REGISTER(hrs);
+
 /// Variable to store data ///
 float temp_data = 0, light_data = 0;
 uint16_t mpu_data = 0;
@@ -91,6 +95,9 @@ static struct bt_gatt_indicate_params ind_params;
 static void vnd_ccc_cfg_changed(const struct bt_gatt_attr *attr, uint16_t value)
 {
 	simulate_vnd = (value == BT_GATT_CCC_INDICATE) ? 1 : 0;
+	bool notif_enabled = (value == BT_GATT_CCC_NOTIFY);
+
+	printk("CSTM notifications %s", notif_enabled ? "enabled" : "disabled");
 }
 
 static void indicate_cb(struct bt_conn *conn,
@@ -218,7 +225,7 @@ BT_GATT_SERVICE_DEFINE(vnd_svc,							//Macro that define and register a service
 	BT_GATT_PRIMARY_SERVICE(&vnd_uuid),					//Primary Service Declaration Macro
 	BT_GATT_CHARACTERISTIC(&vnd_enc_uuid.uuid,			//Characteristic and Value Declaration Macro (Chara uuid,
 			       BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE |	//Characteristic Attribute properties,
-			       BT_GATT_CHRC_INDICATE,
+			       BT_GATT_CHRC_INDICATE | BT_GATT_CHRC_NOTIFY,
 			       BT_GATT_PERM_READ_ENCRYPT |			//Characteristic Attribute access permissions,
 			       BT_GATT_PERM_WRITE_ENCRYPT,
 			       read_vnd, write_vnd, vnd_value),		//read,write Callbacks, Attribute value)
@@ -551,7 +558,7 @@ void sensors_read_task(void)
 			steps = getStepCounterOutput();
 			mpu6050_read_Acc(&mpu_data);
 			hrs_notify();
-			printf("Steps= %d. Temperature = %.2f . Heart Rate = %d . SpO2 = %d . MPU = %d\n", steps, temp_data, heart_rate, sp02, mpu_data);
+			// printf("Steps= %d. Temperature = %.2f . Heart Rate = %d . SpO2 = %d . MPU = %d\n", steps, temp_data, heart_rate, sp02, mpu_data);
 			k_msleep(10);
 			break;
 		}
