@@ -429,7 +429,6 @@ void main(void)
 		sensor_mode = SENSOR_MODE_READ_ALL;
 		display_mode = DISPLAY_MODE_VALUES;
 		k_msleep(10000);
-		// hrs_notify();
 		hts_indicate();
 	}
 }
@@ -627,11 +626,11 @@ void brightness_task()
 
 K_THREAD_DEFINE(sensors_read_task_id, 1024, sensors_read_task, NULL, NULL, NULL,
 				0, 0, 10);
-K_THREAD_DEFINE(latch_sensor_task_id, 256, latch_sensor_task, NULL, NULL, NULL,
+K_THREAD_DEFINE(latch_sensor_task_id, 512, latch_sensor_task, NULL, NULL, NULL,
 				0, 0, 100);
-K_THREAD_DEFINE(buzzer_task_id, 128, buzzer_task, NULL, NULL, NULL,
+K_THREAD_DEFINE(buzzer_task_id, 256, buzzer_task, NULL, NULL, NULL,
 				0, 0, 100);
-K_THREAD_DEFINE(vibration_task_id, 128, vibration_task, NULL, NULL, NULL,
+K_THREAD_DEFINE(vibration_task_id, 256, vibration_task, NULL, NULL, NULL,
 				0, 0, 100);
 K_THREAD_DEFINE(display_task_id, 512, display_task, NULL, NULL, NULL,
 				0, 0, 1000);

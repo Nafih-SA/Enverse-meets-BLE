@@ -49,7 +49,7 @@ static void indicate_destroy(struct bt_gatt_indicate_params *params)
 	indicating = 0U;
 }
 
-/* Heart Rate Service Declaration */
+/* Thermometer Service Declaration */
 BT_GATT_SERVICE_DEFINE(hts_svc,
 	BT_GATT_PRIMARY_SERVICE(BT_UUID_HTS),
 	BT_GATT_CHARACTERISTIC(BT_UUID_HTS_MEASUREMENT, BT_GATT_CHRC_INDICATE,
@@ -111,7 +111,7 @@ void hts_indicate(void)
 		temperature = sensor_value_to_double(&temp_value);
 
 gatt_indicate:
-		printf("temperature is %gC\n", temperature);
+		printf("temperature is %g C\n", temperature);
 
 		mantissa = (uint32_t)(temperature * 100);
 		exponent = (uint8_t)-2;
