@@ -79,7 +79,7 @@ void hts_indicate(double temp)
 
 	if (simulate_htm) {
 		static uint8_t htm[5];
-		static double temperature = 20U;
+		// static double temperature = 20U;
 		uint32_t mantissa;
 		uint8_t exponent;
 		int r;
@@ -88,29 +88,29 @@ void hts_indicate(double temp)
 			return;
 		}
 
-		if (!temp_dev) {
+		// if (!temp_dev) {
 			// temperature++;
 			// if (temperature == 30U) {
 			// 	temperature = 20U;
 			// }
 
-			goto gatt_indicate;
-		}
+		// 	goto gatt_indicate;
+		// }
 
-		r = sensor_sample_fetch(temp_dev);
-		if (r) {
-			printk("sensor_sample_fetch failed return: %d\n", r);
-		}
+		// r = sensor_sample_fetch(temp_dev);
+		// if (r) {
+		// 	printk("sensor_sample_fetch failed return: %d\n", r);
+		// }
 
-		r = sensor_channel_get(temp_dev, SENSOR_CHAN_DIE_TEMP,
-				       &temp_value);
-		if (r) {
-			printk("sensor_channel_get failed return: %d\n", r);
-		}
+		// r = sensor_channel_get(temp_dev, SENSOR_CHAN_DIE_TEMP,
+		// 		       &temp_value);
+		// if (r) {
+		// 	printk("sensor_channel_get failed return: %d\n", r);
+		// }
 
-		temperature = sensor_value_to_double(&temp_value);
+		// temperature = sensor_value_to_double(&temp_value);
 
-gatt_indicate:
+// gatt_indicate:
 		printf("temperature is %g C\n", temp);
 
 		mantissa = (uint32_t)(temp * 100);
