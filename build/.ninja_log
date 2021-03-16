@@ -645,3 +645,15 @@
 2169	4109	6375786664476313	zephyr/zephyr.lst	82ea66b2790b07ad
 2169	4109	6375786664476313	zephyr/zephyr.stat	82ea66b2790b07ad
 30	81	0	zephyr/cmake/flash/CMakeFiles/west_flash_depends	78d79107212025e0
+43	343	6375793260206204	CMakeFiles/app.dir/src/hts.c.obj	1a33eed0ac7dceeb
+346	535	6375793262197396	app/libapp.a	1e4f21f027e79afd
+535	919	6375793265843734	zephyr/zephyr_prebuilt.elf	ca74d7ac3815056d
+920	1015	6375793266924824	zephyr/linker_pass_final.cmd	9056c3f261e49e5f
+1016	1695	6375793273802456	zephyr/isr_tables.c	db847b19c753f0db
+1695	1864	6375793275532387	zephyr/CMakeFiles/zephyr_final.dir/isr_tables.c.obj	eddb59d4df5e828f
+1865	3768	6375793294468196	zephyr/zephyr.elf	82ea66b2790b07ad
+1865	3768	6375793294468196	zephyr/zephyr.hex	82ea66b2790b07ad
+1865	3768	6375793294468196	zephyr/zephyr.bin	82ea66b2790b07ad
+1865	3768	6375793294468196	zephyr/zephyr.lst	82ea66b2790b07ad
+1865	3768	6375793294468196	zephyr/zephyr.stat	82ea66b2790b07ad
+30	102	0	zephyr/cmake/flash/CMakeFiles/west_flash_depends	78d79107212025e0
