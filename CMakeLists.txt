@@ -30,5 +30,8 @@ target_sources(app PRIVATE src/bma4.h)
 target_sources(app PRIVATE src/bma456.h)
 target_sources(app PRIVATE src/bma4_defs.h)
 
+target_sources(app PRIVATE src/hts.h)
+target_sources(app PRIVATE src/hts.c)
+
 
 

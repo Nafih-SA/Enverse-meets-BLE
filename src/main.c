@@ -31,6 +31,7 @@
 #include <bluetooth/uuid.h>
 #include <bluetooth/gatt.h>
 #include <bluetooth/services/hrs.h>
+#include "hts.h"
 
 // #define LOG_LEVEL CONFIG_BT_CSTM_LOG_LEVEL
 // #include <logging/log.h>
@@ -225,7 +226,7 @@ BT_GATT_SERVICE_DEFINE(vnd_svc,							//Macro that define and register a service
 	BT_GATT_PRIMARY_SERVICE(&vnd_uuid),					//Primary Service Declaration Macro
 	BT_GATT_CHARACTERISTIC(&vnd_enc_uuid.uuid,			//Characteristic and Value Declaration Macro (Chara uuid,
 			       BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE |	//Characteristic Attribute properties,
-			       BT_GATT_CHRC_INDICATE | BT_GATT_CHRC_NOTIFY,
+			       BT_GATT_CHRC_INDICATE /*| BT_GATT_CHRC_NOTIFY*/,
 			       BT_GATT_PERM_READ_ENCRYPT |			//Characteristic Attribute access permissions,
 			       BT_GATT_PERM_WRITE_ENCRYPT,
 			       read_vnd, write_vnd, vnd_value),		//read,write Callbacks, Attribute value)
@@ -293,6 +294,7 @@ static void bt_ready(void)
 	printk("Bluetooth initialized\n");
 
 	// cts_init();
+	hts_init();		// Health Thermometer Initialize
 
 	if (IS_ENABLED(CONFIG_SETTINGS)) {
 		settings_load();
@@ -428,6 +430,7 @@ void main(void)
 		display_mode = DISPLAY_MODE_VALUES;
 		k_msleep(10000);
 		// hrs_notify();
+		hts_indicate();
 	}
 }
 
@@ -624,13 +627,13 @@ void brightness_task()
 
 K_THREAD_DEFINE(sensors_read_task_id, 1024, sensors_read_task, NULL, NULL, NULL,
 				0, 0, 10);
-K_THREAD_DEFINE(latch_sensor_task_id, 300, latch_sensor_task, NULL, NULL, NULL,
+K_THREAD_DEFINE(latch_sensor_task_id, 256, latch_sensor_task, NULL, NULL, NULL,
 				0, 0, 100);
-K_THREAD_DEFINE(buzzer_task_id, 200, buzzer_task, NULL, NULL, NULL,
+K_THREAD_DEFINE(buzzer_task_id, 128, buzzer_task, NULL, NULL, NULL,
 				0, 0, 100);
-K_THREAD_DEFINE(vibration_task_id, 200, vibration_task, NULL, NULL, NULL,
+K_THREAD_DEFINE(vibration_task_id, 128, vibration_task, NULL, NULL, NULL,
 				0, 0, 100);
 K_THREAD_DEFINE(display_task_id, 512, display_task, NULL, NULL, NULL,
 				0, 0, 1000);
-K_THREAD_DEFINE(brightness_task_id, 400, brightness_task, NULL, NULL, NULL,
+K_THREAD_DEFINE(brightness_task_id, 512, brightness_task, NULL, NULL, NULL,
 				0, 0, 2000);
