@@ -429,7 +429,7 @@ void main(void)
 		sensor_mode = SENSOR_MODE_READ_ALL;
 		display_mode = DISPLAY_MODE_VALUES;
 		k_msleep(10000);
-		hts_indicate();
+		hts_indicate(temp_data);
 	}
 }
 

@@ -72,7 +72,7 @@ void hts_init(void)
 	       temp_dev->name);
 }
 
-void hts_indicate(void)
+void hts_indicate(double temp)
 {
 	/* Temperature measurements simulation */
 	struct sensor_value temp_value;
@@ -89,10 +89,10 @@ void hts_indicate(void)
 		}
 
 		if (!temp_dev) {
-			temperature++;
-			if (temperature == 30U) {
-				temperature = 20U;
-			}
+			// temperature++;
+			// if (temperature == 30U) {
+			// 	temperature = 20U;
+			// }
 
 			goto gatt_indicate;
 		}
@@ -111,9 +111,9 @@ void hts_indicate(void)
 		temperature = sensor_value_to_double(&temp_value);
 
 gatt_indicate:
-		printf("temperature is %g C\n", temperature);
+		printf("temperature is %g C\n", temp);
 
-		mantissa = (uint32_t)(temperature * 100);
+		mantissa = (uint32_t)(temp * 100);
 		exponent = (uint8_t)-2;
 
 		htm[0] = 0; /* temperature in celcius */
