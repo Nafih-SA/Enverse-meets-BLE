@@ -13,7 +13,7 @@ extern "C" {
 #endif
 
 void hts_init(void);
-void hts_indicate(void);
+void hts_indicate(double);
 
 #ifdef __cplusplus
 }
